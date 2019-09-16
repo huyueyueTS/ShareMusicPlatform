@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatic.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.ma4.mapper.TaylorSwiftMapper">
+    <select id="queryAlbum" resultType="Album">
+        select * from `album`;
+    </select>
+    <select id="querySong" resultType="Song" parameterType="Album" statementType="STATEMENT">
+        select * from ${name}
+    </select>
+    <select id="singleSong" resultType="Song" statementType="STATEMENT">
+        select * from ${album.getName} where name = &apos;${songName}&apos;
+    </select>
+    <insert id="insertSong" statementType="STATEMENT">
+        insert into ${album.getName} (name,src) values (&apos;${song.getName}&apos;,&apos;${song.getSrc}&apos;)
+    </insert>
+</mapper>
